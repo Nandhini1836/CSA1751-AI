@@ -1,4 +1,5 @@
 **ALGORITHM FOR BFS**
+
 Represent the graph using an adjacency list
 
 Create an empty queue Q
