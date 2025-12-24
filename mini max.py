@@ -1,24 +1,33 @@
-def minimax(depth, index, is_max, values, max_depth):
-    # Base case: leaf node
+# ---------------------------------------
+# MINIMAX ALGORITHM
+# ---------------------------------------
+
+def minimax(depth, node_index, is_maximizing, values, max_depth):
     if depth == max_depth:
-        return values[index]
+        return values[node_index]
 
-    if is_max:
-        return max(
-            minimax(depth + 1, index * 2, False, values, max_depth),
-            minimax(depth + 1, index * 2 + 1, False, values, max_depth)
-        )
+    if is_maximizing:
+        best = -float('inf')
+        for i in range(2):
+            val = minimax(depth + 1, node_index * 2 + i, False, values, max_depth)
+            best = max(best, val)
+        return best
     else:
-        return min(
-            minimax(depth + 1, index * 2, True, values, max_depth),
-            minimax(depth + 1, index * 2 + 1, True, values, max_depth)
-        )
+        best = float('inf')
+        for i in range(2):
+            val = minimax(depth + 1, node_index * 2 + i, True, values, max_depth)
+            best = min(best, val)
+        return best
 
-
+# ---------------------------------------
+# EXAMPLE TREE (LEAF VALUES)
+# ---------------------------------------
 # Leaf node values (left to right)
-values = [3, 5, 2, 9]
+values = [2, 3, 5, 9, 0, 1, 7, 5]
 
-max_depth = 2   # height of the tree
+max_depth = 3  # depth of tree
+
 result = minimax(0, 0, True, values, max_depth)
 
-print("Optimal Value:", result)
+print("Optimal value using Minimax:", result)
+
