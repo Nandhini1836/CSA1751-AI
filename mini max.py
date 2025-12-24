@@ -30,4 +30,3 @@ max_depth = 3  # depth of tree
 result = minimax(0, 0, True, values, max_depth)
 
 print("Optimal value using Minimax:", result)
-
