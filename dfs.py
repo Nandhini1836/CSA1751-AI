@@ -1,34 +1,46 @@
-# DFS FUNCTION (Recursive)
 def dfs(graph, start):
     visited = set()
-    result = []
 
     def dfs_visit(node):
-        if node not in visited:
-            visited.add(node)
-            result.append(node)
-            for neighbor in graph[node]:
+        visited.add(node)
+        print(node, end=" ")
+        for neighbor in graph[node]:
+            if neighbor not in visited:
                 dfs_visit(neighbor)
 
     dfs_visit(start)
-    return result
 
 
-# ---------------- EXAMPLE 1 ----------------
-graph1 = {
+# ---------------- EXAMPLE 1: Alphabet Tree ----------------
+graph_1 = {
     'A': ['B', 'C'],
     'B': ['D', 'E'],
-    'C': ['F'],
+    'C': ['F', 'G'],
     'D': [],
     'E': [],
-    'F': []
+    'F': [],
+    'G': []
 }
 
-print("Example 1 DFS:", dfs(graph1, 'A'))
+print("DFS Example 1:")
+dfs(graph_1, 'A')
+print("\n")
 
+# ---------------- EXAMPLE 2: Small Number Tree ----------------
+graph_2 = {
+    1: [2, 3],
+    2: [4, 5],
+    3: [],
+    4: [],
+    5: []
+}
 
-# ---------------- EXAMPLE 2 ----------------
-graph2 = {
+print("DFS Example 2:")
+dfs(graph_2, 1)
+print("\n")
+
+# ---------------- EXAMPLE 3: Large Tree (1–10) ----------------
+graph_3 = {
     1: [2, 7],
     2: [3, 6],
     3: [4, 5],
@@ -41,29 +53,22 @@ graph2 = {
     10: []
 }
 
-print("Example 2 DFS:", dfs(graph2, 1))
+print("DFS Example 3:")
+dfs(graph_3, 1)
+print("\n")
 
-
-# ---------------- EXAMPLE 3 ----------------
-graph3 = {
-    1: [2],
-    2: [3],
+# ---------------- EXAMPLE 4: Directed Graph ----------------
+graph_4 = {
+    0: [1],
+    1: [3],
+    2: [0],
     3: [4],
     4: [5],
-    5: []
+    5: [7],
+    6: [],
+    7: [6]
 }
 
-print("Example 3 DFS:", dfs(graph3, 1))
-
-
-# ---------------- EXAMPLE 4 ----------------
-graph4 = {
-    'X': ['Y', 'Z'],
-    'Y': ['P', 'Q'],
-    'Z': ['R'],
-    'P': [],
-    'Q': [],
-    'R': []
-}
-
-print("Example 4 DFS:", dfs(graph4, 'X'))
+print("DFS Example 4:")
+dfs(graph_4, 0)
+print()
