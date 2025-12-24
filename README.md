@@ -31,6 +31,8 @@ End For
 End While
 
 End BFS
+
+
 **DFS**
 Represent the graph using adjacency list
 
@@ -49,6 +51,8 @@ If node is not in Visited then
   Call DFS recursively
 
 End DFS Algorithm
+
+
 **water jug**
 Define the capacity of Jug1 and Jug2
 
@@ -80,6 +84,8 @@ While Q is not empty do
 End While
 
 End Water Jug Algorithm
+
+
 **a*algorithm**
 Represent graph with cost and heuristic values
 
@@ -102,6 +108,8 @@ While open list is not empty do
 End While
 
 End A* Algorithm
+
+
 **mini max**
 Generate game tree
 
@@ -118,6 +126,8 @@ Else minimizing player
 Return best value
 
 End Minimax Algorithm
+
+
 **alpha beta**
 Start with alpha = −∞ and beta = +∞
 
@@ -130,6 +140,8 @@ Continue until optimal value found
 Return best value
 
 End Alpha-Beta Algorithm
+
+
 **decision tree**
 Collect training data
 
@@ -144,6 +156,8 @@ Stop when leaf node reached
 Use tree for prediction
 
 End Decision Tree Algorithm
+
+
 **crypt arthematic**
 Identify all unique letters in the problem
 
@@ -162,6 +176,8 @@ If satisfied, display solution
 Repeat for all possible combinations
 
 End Crypt-Arithmetic Algorithm
+
+
 **8 puzzle**
 Represent the puzzle as a 3×3 matrix
 
@@ -196,6 +212,8 @@ While Q is not empty do
 End While
 
 End 8-Puzzle Algorithm
+
+
 **tic tac tic**
 Initialize empty game board
 
@@ -214,6 +232,8 @@ Repeat until game ends
 → Switch player
 
 End Tic-Tac-Toe Algorithm
+
+
 **neutral network**
 Initialize input values
 
