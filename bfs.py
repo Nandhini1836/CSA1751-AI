@@ -3,33 +3,48 @@ from collections import deque
 def bfs(graph, start):
     visited = set()
     queue = deque([start])
-    result = []
+    visited.add(start)
 
     while queue:
         node = queue.popleft()
-        if node not in visited:
-            visited.add(node)
-            result.append(node)
-            queue.extend(graph[node])
+        print(node, end=" ")
 
-    return result
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append(neighbor)
 
 
-# -------- Example 1: Alphabet Tree --------
-graph1 = {
+# ---------------- EXAMPLE 1: Alphabet Tree ----------------
+graph_1 = {
     'A': ['B', 'C'],
     'B': ['D', 'E'],
-    'C': ['F'],
+    'C': ['F', 'G'],
     'D': [],
     'E': [],
-    'F': []
+    'F': [],
+    'G': []
 }
 
-print("Example 1 BFS:", bfs(graph1, 'A'))
+print("BFS Example 1:")
+bfs(graph_1, 'A')
+print("\n")
 
+# ---------------- EXAMPLE 2: Small Number Tree ----------------
+graph_2 = {
+    1: [2, 3],
+    2: [4, 5],
+    3: [],
+    4: [],
+    5: []
+}
 
-# -------- Example 2: Numeric Tree --------
-graph2 = {
+print("BFS Example 2:")
+bfs(graph_2, 1)
+print("\n")
+
+# ---------------- EXAMPLE 3: Large Tree (1–10) ----------------
+graph_3 = {
     1: [2, 7],
     2: [3, 6],
     3: [4, 5],
@@ -42,29 +57,22 @@ graph2 = {
     10: []
 }
 
-print("Example 2 BFS:", bfs(graph2, 1))
+print("BFS Example 3:")
+bfs(graph_3, 1)
+print("\n")
 
-
-# -------- Example 3: Linear Graph --------
-graph3 = {
-    1: [2],
-    2: [3],
+# ---------------- EXAMPLE 4: Directed Graph ----------------
+graph_4 = {
+    0: [1],
+    1: [3],
+    2: [0],
     3: [4],
     4: [5],
-    5: []
+    5: [7],
+    6: [],
+    7: [6]
 }
 
-print("Example 3 BFS:", bfs(graph3, 1))
-
-
-# -------- Example 4: Multiple Branches --------
-graph4 = {
-    'X': ['Y', 'Z'],
-    'Y': ['P', 'Q'],
-    'Z': ['R'],
-    'P': [],
-    'Q': [],
-    'R': []
-}
-
-print("Example 4 BFS:", bfs(graph4, 'X'))
+print("BFS Example 4:")
+bfs(graph_4, 0)
+print()
