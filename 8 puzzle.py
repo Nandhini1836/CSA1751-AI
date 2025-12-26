@@ -1,65 +1,103 @@
-from collections import deque
+from heapq import heappush, heappop
 
-# Jug capacities
-CAPACITY_8 = 8
-CAPACITY_5 = 5
-CAPACITY_3 = 3
+# ---------- Puzzle helpers ----------
 
-# Initial and goal state
-initial_state = (8, 0, 0)
-goal_state = (4, 4)
+GOAL = "123456780"   # 0 = blank
 
-# BFS function
-def water_jug_bfs():
-    queue = deque()
+def to_str(board):
+    return "".join(str(x) for x in board)
+
+def print_board(state):
+    s = list(state)
+    print(s[0], s[1], s[2])
+    print(s[3], s[4], s[5])
+    print(s[6], s[7], s[8])
+    print()
+
+# ---------- Heuristics ----------
+
+def misplaced_tiles(state):
+    return sum(1 for i, v in enumerate(state)
+               if v != "0" and v != GOAL[i])
+
+def manhattan_distance(state):
+    dist = 0
+    for i, v in enumerate(state):
+        if v == "0":
+            continue
+        goal_pos = GOAL.index(v)
+        x1, y1 = divmod(i, 3)
+        x2, y2 = divmod(goal_pos, 3)
+        dist += abs(x1 - x2) + abs(y1 - y2)
+    return dist
+
+def heuristic(state):
+    return manhattan_distance(state)
+
+# ---------- State expansion ----------
+
+moves = {
+    0: [1,3], 1: [0,2,4], 2: [1,5],
+    3: [0,4,6], 4: [1,3,5,7], 5: [2,4,8],
+    6: [3,7], 7: [4,6,8], 8: [5,7]
+}
+
+def neighbors(state):
+    zero = state.index("0")
+    for m in moves[zero]:
+        s = list(state)
+        s[zero], s[m] = s[m], s[zero]
+        yield to_str(s)
+
+# ---------- A* Search ----------
+
+def a_star(start):
+    start = to_str(start)
+
+    open_list = []
+    heappush(open_list, (0, start))
+
+    g = {start: 0}
+    parent = {start: None}
     visited = set()
 
-    queue.append((initial_state, [initial_state]))
-    visited.add(initial_state)
+    while open_list:
+        _, state = heappop(open_list)
 
-    while queue:
-        (x, y, z), path = queue.popleft()
+        if state in visited:
+            continue
+        visited.add(state)
 
-        # Goal condition
-        if x == goal_state[0] and y == goal_state[1]:
-            print("Solution Path:")
-            for state in path:
-                print(state)
-            return
+        if state == GOAL:
+            path = []
+            while state is not None:
+                path.append(state)
+                state = parent[state]
+            return path[::-1]
 
-        moves = []
+        for nxt in neighbors(state):
+            if nxt not in g or g[state] + 1 < g[nxt]:
+                g[nxt] = g[state] + 1
+                f = g[nxt] + heuristic(nxt)
+                parent[nxt] = state
+                heappush(open_list, (f, nxt))
 
-        # Pour 8 -> 5
-        t = min(x, CAPACITY_5 - y)
-        moves.append((x - t, y + t, z))
+    return None
 
-        # Pour 8 -> 3
-        t = min(x, CAPACITY_3 - z)
-        moves.append((x - t, y, z + t))
+# ---------- Run Example (SOLVABLE) ----------
 
-        # Pour 5 -> 8
-        t = min(y, CAPACITY_8 - x)
-        moves.append((x + t, y - t, z))
+start_state = [
+    1, 2, 3,
+    4, 0, 6,
+    7, 5, 8
+]
 
-        # Pour 5 -> 3
-        t = min(y, CAPACITY_3 - z)
-        moves.append((x, y - t, z + t))
+path = a_star(start_state)
 
-        # Pour 3 -> 8
-        t = min(z, CAPACITY_8 - x)
-        moves.append((x + t, y, z - t))
-
-        # Pour 3 -> 5
-        t = min(z, CAPACITY_5 - y)
-        moves.append((x, y + t, z - t))
-
-        # Add unvisited states
-        for state in moves:
-            if state not in visited:
-                visited.add(state)
-                queue.append((state, path + [state]))
-
-    print("No solution found")
-
-# Run the program
-water_jug_bfs()
+if path is None:
+    print("No solution exists for this puzzle.")
+else:
+    print("Steps =", len(path) - 1)
+    print("\nSolution Path:\n")
+    for s in path:
+        print_board(s)
