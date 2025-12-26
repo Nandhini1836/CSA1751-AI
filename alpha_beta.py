@@ -1,71 +1,46 @@
-def alpha_beta(depth, index, is_max, values, alpha, beta, max_depth):
-    # Base condition: leaf node
-    if depth == max_depth:
-        return values[index]
+import math
 
-    if is_max:
-        best = -999
+# Tree structure
+# Leaf node values
+leaves = {
+    'D': 2, 'E': 3,  # under B
+    'F': 0, 'G': 1,  # under C left
+    'H': 7, 'I': 5   # under C right (G's children)
+}
 
-        for i in range(2):
-            val = alpha_beta(
-                depth + 1,
-                index * 2 + i,
-                False,
-                values,
-                alpha,
-                beta,
-                max_depth
-            )
-            best = max(best, val)
-            alpha = max(alpha, best)
+# Graph connections
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F', 'G'],
+    'D': [], 'E': [],
+    'F': [], 'G': ['H', 'I'],
+    'H': [], 'I': []
+}
 
-            if alpha >= beta:
-                break   # Beta cut-off
+def alpha_beta(node, depth, alpha, beta, maximizingPlayer):
+    # If leaf node, return its value
+    if not graph[node]:
+        return leaves[node]
 
-        return best
-
+    if maximizingPlayer:
+        maxEval = -math.inf
+        for child in graph[node]:
+            eval = alpha_beta(child, depth+1, alpha, beta, False)
+            maxEval = max(maxEval, eval)
+            alpha = max(alpha, eval)
+            if beta <= alpha:
+                break  # Beta cut-off
+        return maxEval
     else:
-        best = 999
+        minEval = math.inf
+        for child in graph[node]:
+            eval = alpha_beta(child, depth+1, alpha, beta, True)
+            minEval = min(minEval, eval)
+            beta = min(beta, eval)
+            if beta <= alpha:
+                break  # Alpha cut-off
+        return minEval
 
-        for i in range(2):
-            val = alpha_beta(
-                depth + 1,
-                index * 2 + i,
-                True,
-                values,
-                alpha,
-                beta,
-                max_depth
-            )
-            best = min(best, val)
-            beta = min(beta, best)
-
-            if alpha >= beta:
-                break   # Alpha cut-off
-
-        return best
-
-
-# -------- LEAF NODE VALUES --------
-# Game tree:
-#            MAX
-#         /         \
-#       MIN         MIN
-#     /    \       /    \
-#    3      5     2      9
-values = [3, 5, 2, 9]
-
-max_depth = 2
-
-# -------- FUNCTION CALL (THIS MAKES IT RUN) --------
-result = alpha_beta(
-    depth=0,
-    index=0,
-    is_max=True,
-    values=values,
-    alpha=-999,
-    beta=999,
-    max_depth=max_depth
-)
-
-print("Optimal Value:", result)
+best_value = alpha_beta('A', 0, -math.inf, math.inf, True)
+print("Optimal value at root (A):", best_value)
