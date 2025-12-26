@@ -143,6 +143,9 @@ End Minimax Algorithm
 
 
 **alpha beta**
+
+
+
 Start with alpha = −∞ and beta = +∞
 
 Apply minimax algorithm
@@ -197,6 +200,7 @@ If satisfied, display solution
 Repeat for all possible combinations
 
 End Crypt-Arithmetic Algorithm
+
 
 
 **8 puzzle**
