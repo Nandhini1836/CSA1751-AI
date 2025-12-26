@@ -1,5 +1,7 @@
 **ALGORITHM FOR BFS**
 
+
+
 Represent the graph using an adjacency list
 
 Create an empty queue Q
@@ -34,6 +36,9 @@ End BFS
 
 
 **DFS**
+
+
+
 Represent the graph using adjacency list
 
 Create an empty set Visited
@@ -54,6 +59,9 @@ End DFS Algorithm
 
 
 **water jug**
+
+
+
 Define the capacity of Jug1 and Jug2
 
 Define the target amount
@@ -86,7 +94,10 @@ End While
 End Water Jug Algorithm
 
 
-**a*algorithm**
+****a* arthimatic****
+
+
+
 Represent graph with cost and heuristic values
 
 Create an open list and closed list
@@ -111,6 +122,9 @@ End A* Algorithm
 
 
 **mini max**
+
+
+
 Generate game tree
 
 If terminal state reached, return score
@@ -143,6 +157,9 @@ End Alpha-Beta Algorithm
 
 
 **decision tree**
+
+
+
 Collect training data
 
 Select best attribute using information gain
@@ -159,6 +176,10 @@ End Decision Tree Algorithm
 
 
 **crypt arthematic**
+
+
+
+
 Identify all unique letters in the problem
 
 Assign digits (0–9) to letters
@@ -179,6 +200,10 @@ End Crypt-Arithmetic Algorithm
 
 
 **8 puzzle**
+
+
+
+
 Represent the puzzle as a 3×3 matrix
 
 Define the Goal State
@@ -214,27 +239,10 @@ End While
 End 8-Puzzle Algorithm
 
 
-**tic tac tic**
-Initialize empty game board
-
-Set current player
-
-Repeat until game ends
-
-→ Display board
-
-→ Accept player move
-
-→ Update board
-
-→ Check win or draw
-
-→ Switch player
-
-End Tic-Tac-Toe Algorithm
-
-
 **neutral network**
+
+
+
 Initialize input values
 
 Initialize weight values
@@ -254,3 +262,45 @@ Store the result as output
 Display the output
 
 End Neural Network Algorithm
+
+
+**greedy bfs**
+
+
+Represent the graph using an adjacency list
+
+Define a heuristic function h(n) for each node
+
+Create an empty priority queue Q (ordered by h(n))
+
+Create an empty set/list Visited
+
+Add StartNode to Visited
+
+Insert StartNode into Q with priority h(StartNode)
+
+While Q is not empty do
+
+Remove the node with minimum heuristic value from Q → CurrentNode
+
+Visit CurrentNode
+
+If CurrentNode == GoalNode then
+  Stop and return success
+End If
+
+For each neighbor of CurrentNode in Graph do
+
+ If neighbor is not in Visited then
+
+  Add neighbor to Visited
+
+  Insert neighbor into Q with priority h(neighbor)
+
+ End If
+
+End For
+
+End While
+
+End Greedy Best-First Search
