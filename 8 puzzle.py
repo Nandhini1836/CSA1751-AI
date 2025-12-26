@@ -1,28 +1,65 @@
 from collections import deque
 
-goal = [[1,2,3],[4,5,6],[7,8,0]]
+# Jug capacities
+CAPACITY_8 = 8
+CAPACITY_5 = 5
+CAPACITY_3 = 3
 
-def bfs(start):
-    q = deque([(start, [])])
+# Initial and goal state
+initial_state = (8, 0, 0)
+goal_state = (4, 4)
+
+# BFS function
+def water_jug_bfs():
+    queue = deque()
     visited = set()
 
-    while q:
-        state, path = q.popleft()
-        if state == goal:
-            return path
+    queue.append((initial_state, [initial_state]))
+    visited.add(initial_state)
 
-        visited.add(tuple(map(tuple, state)))
+    while queue:
+        (x, y, z), path = queue.popleft()
 
-        x, y = [(i,j) for i in range(3) for j in range(3) if state[i][j]==0][0]
-        moves = [(0,1),(1,0),(0,-1),(-1,0)]
+        # Goal condition
+        if x == goal_state[0] and y == goal_state[1]:
+            print("Solution Path:")
+            for state in path:
+                print(state)
+            return
 
-        for dx,dy in moves:
-            nx, ny = x+dx, y+dy
-            if 0<=nx<3 and 0<=ny<3:
-                new = [row[:] for row in state]
-                new[x][y], new[nx][ny] = new[nx][ny], new[x][y]
-                if tuple(map(tuple,new)) not in visited:
-                    q.append((new, path+[new]))
+        moves = []
 
-start = [[1,2,3],[4,0,6],[7,5,8]]
-print("Solution steps:", bfs(start))
+        # Pour 8 -> 5
+        t = min(x, CAPACITY_5 - y)
+        moves.append((x - t, y + t, z))
+
+        # Pour 8 -> 3
+        t = min(x, CAPACITY_3 - z)
+        moves.append((x - t, y, z + t))
+
+        # Pour 5 -> 8
+        t = min(y, CAPACITY_8 - x)
+        moves.append((x + t, y - t, z))
+
+        # Pour 5 -> 3
+        t = min(y, CAPACITY_3 - z)
+        moves.append((x, y - t, z + t))
+
+        # Pour 3 -> 8
+        t = min(z, CAPACITY_8 - x)
+        moves.append((x + t, y, z - t))
+
+        # Pour 3 -> 5
+        t = min(z, CAPACITY_5 - y)
+        moves.append((x, y + t, z - t))
+
+        # Add unvisited states
+        for state in moves:
+            if state not in visited:
+                visited.add(state)
+                queue.append((state, path + [state]))
+
+    print("No solution found")
+
+# Run the program
+water_jug_bfs()
