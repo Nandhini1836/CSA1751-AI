@@ -52,10 +52,7 @@ If node is not in Visited then
 
 End DFS Algorithm
 
-
-**water jug**
-
-
+## water jug
 
 Define the capacity of Jug1 and Jug2
 
@@ -88,10 +85,7 @@ End While
 
 End Water Jug Algorithm
 
-
-****a* arthimatic****
-
-
+## a* arthimatic
 
 Represent graph with cost and heuristic values
 
@@ -115,10 +109,7 @@ End While
 
 End A* Algorithm
 
-
-**mini max**
-
-
+## mini max
 
 Generate game tree
 
@@ -136,10 +127,7 @@ Return best value
 
 End Minimax Algorithm
 
-
-**alpha beta**
-
-
+## alpha beta
 
 Start with alpha = −∞ and beta = +∞
 
@@ -153,10 +141,7 @@ Return best value
 
 End Alpha-Beta Algorithm
 
-
-**decision tree**
-
-
+## decision tree
 
 Collect training data
 
@@ -172,11 +157,7 @@ Use tree for prediction
 
 End Decision Tree Algorithm
 
-
-**crypt arthematic**
-
-
-
+## crypt arthematic
 
 Identify all unique letters in the problem
 
@@ -196,12 +177,7 @@ Repeat for all possible combinations
 
 End Crypt-Arithmetic Algorithm
 
-
-
-**8 puzzle**
-
-
-
+## 8 puzzle
 
 Represent the puzzle as a 3×3 matrix
 
@@ -237,10 +213,7 @@ End While
 
 End 8-Puzzle Algorithm
 
-
-**neutral network**
-
-
+## neutral network
 
 Initialize input values
 
@@ -262,9 +235,7 @@ Display the output
 
 End Neural Network Algorithm
 
-
-**greedy bfs**
-
+## greedy bfs
 
 Represent the graph using an adjacency list
 
@@ -304,10 +275,7 @@ End While
 
 End Greedy Best-First Search
 
-
-**Sum of Integers from 1 to N**
-
-
+## Sum of Integers from 1 to N
 
 Start
 
@@ -325,10 +293,7 @@ Return the final sum
 
 Stop
 
-
-
-**Database with Name and DOB**
-
+## Database with Name and DOB
 
 Start
 
@@ -344,10 +309,7 @@ Display result
 
 Stop
 
-
-
-**Student–Teacher–Subject Database**
-
+## Student–Teacher–Subject Database
 
 Start
 
@@ -363,9 +325,7 @@ Display result
 
 Stop
 
-
-**Planets Database**
-
+## Planets Database
 
 Start
 
@@ -381,9 +341,7 @@ Else return false
 
 Stop
 
-
-**Towers of Hanoi**
-
+## Towers of Hanoi
 
 Start
 
@@ -399,9 +357,7 @@ Repeat steps recursively
 
 Stop
 
-
-**Bird Can Fly or Not**
-
+## Bird Can Fly or Not
 
 Start
 
@@ -419,9 +375,7 @@ Display result
 
 Stop
 
-
-**Family Tree**
-
+## Family Tree
 
 Start
 
@@ -437,9 +391,7 @@ Display result
 
 Stop
 
-
-**Dieting System Based on Disease**
-
+## Dieting System Based on Disease
 
 Start
 
@@ -455,9 +407,7 @@ Display result
 
 Stop
 
-
-**Monkey Banana Problem**
-
+## Monkey Banana Problem
 
 Start
 
@@ -473,9 +423,7 @@ Continue until goal state is achieved
 
 Stop
 
-
-**Fruit and Its Color Using Backtracking**
-
+## Fruit and Its Color Using Backtracking
 
 Start
 
@@ -491,10 +439,7 @@ Display results
 
 Stop
 
-
-
-**Best First Search**
-
+## Best First Search
 
 Start
 
@@ -510,9 +455,7 @@ Display path
 
 Stop
 
-
-**Medical Diagnosis System**
-
+## Medical Diagnosis System
 
 Start
 
@@ -528,9 +471,7 @@ Display diagnosis
 
 Stop
 
-
-**Forward Chaining**
-
+## Forward Chaining
 
 Start
 
@@ -546,9 +487,7 @@ Display inferred facts
 
 Stop
 
-
-**Backward Chaining**
-
+## Backward Chaining
 
 Start
 
@@ -564,9 +503,7 @@ If all sub-goals succeed, goal is true
 
 Stop
 
-
-**Pattern Matching**
-
+## Pattern Matching
 
 Start
 
@@ -580,10 +517,7 @@ Return matched values
 
 Stop
 
-
-
-**Number of Vowels**
-
+## Number of Vowels
 
 Start
 
@@ -599,10 +533,7 @@ Display total count
 
 Stop
 
-
-**Web Blog**
-
-
+## Web Blog
 
 Start
 
