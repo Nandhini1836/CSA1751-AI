@@ -32,7 +32,7 @@ End While
 
 End BFS
 
-##DFS
+## DFS
 
 Represent the graph using adjacency list
 
